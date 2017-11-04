@@ -21,7 +21,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void dispatchPermission(View v) {
-        MainActivityPermissionsDispatcher.startMapActivityWithCheck(MainActivity.this);
+        MainActivityPermissionsDispatcher.startMapActivityWithPermissionCheck(MainActivity.this);
+    }
+
+    public void dispatchSvPermission(View v) {
+        MainActivityPermissionsDispatcher.startStreetViewActivityWithPermissionCheck(MainActivity.this);
+    }
+
+
+    @NeedsPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+    public void startStreetViewActivity() {
+        startActivity(new Intent(this, StreetViewActivity.class));
     }
 
     @NeedsPermission(Manifest.permission.ACCESS_FINE_LOCATION)

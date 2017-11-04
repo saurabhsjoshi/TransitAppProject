@@ -17,4 +17,21 @@
         android:text="Open Maps"
         android:onClick="dispatchPermission"
         />
+
+    <Button
+        android:id="@+id/btn_open_sv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_open_maps"
+        android:text="Open Street View"
+        android:onClick="dispatchSvPermission"
+        />
+
+    <fragment
+        android:id="@+id/place_autocomplete_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+
+        />
 </RelativeLayout>
