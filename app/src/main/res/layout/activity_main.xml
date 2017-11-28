@@ -10,28 +10,56 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.sau.transitappproject.MainActivity">
 
-    <Button
-        android:id="@+id/btn_open_maps"
+    <TextView
+        android:id="@+id/lbl_from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Open Maps"
-        android:onClick="dispatchPermission"
-        />
-
-    <Button
-        android:id="@+id/btn_open_sv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btn_open_maps"
-        android:text="Open Street View"
-        android:onClick="dispatchSvPermission"
-        />
+        android:text="From: "/>
 
     <fragment
-        android:id="@+id/place_autocomplete_fragment"
+        android:id="@+id/place_autocomplete_fragment_from"
+        android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/lbl_from" />
 
-        />
+    <TextView
+        android:id="@+id/lbl_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/place_autocomplete_fragment_from"
+        android:layout_marginTop="14dp"
+        android:text="To: " />
+
+    <fragment
+        android:id="@+id/place_autocomplete_fragment_to"
+        android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/lbl_to" />
+
+    <Button
+        android:id="@+id/btn_go"
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/place_autocomplete_fragment_to"
+        android:layout_centerHorizontal="true"
+        android:onClick="dispatchPermission"
+        android:text="Go"/>
+
+    <Button
+        android:id="@+id/btn_bus_stops_windsor"
+        android:layout_marginTop="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_go"
+        android:layout_centerHorizontal="true"
+        android:onClick="dispatchBusStopPermission"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:text="Bus stops near me"/>
+
 </RelativeLayout>

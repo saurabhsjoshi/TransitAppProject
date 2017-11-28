@@ -36,11 +36,14 @@
 
         <activity
             android:name=".MapsActivity"
+            android:noHistory="true"
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".StreetViewActivity"
             android:label="@string/title_activity_street_view"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".BusStopsActivity" />
+        <activity android:name=".StepsActivity"/>
     </application>
 
 </manifest>
