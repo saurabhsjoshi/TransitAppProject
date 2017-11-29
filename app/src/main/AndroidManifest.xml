@@ -36,14 +36,17 @@
 
         <activity
             android:name=".MapsActivity"
-            android:noHistory="true"
-            android:label="@string/title_activity_maps" />
+            android:label="@string/title_activity_maps"
+            android:noHistory="true" />
         <activity
             android:name=".StreetViewActivity"
             android:label="@string/title_activity_street_view"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".BusStopsActivity" />
-        <activity android:name=".StepsActivity"/>
+        <activity android:name=".StepsActivity" />
+
+        <service
+            android:name=".LiveService"/>
     </application>
 
 </manifest>

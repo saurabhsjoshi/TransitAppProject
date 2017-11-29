@@ -1,6 +1,8 @@
 package com.sau.transitappproject.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,8 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.model.DirectionsStep;
 import com.sau.transitappproject.R;
+import com.sau.transitappproject.StreetViewActivity;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -48,12 +52,22 @@ public class StepsListAdapter extends RecyclerView.Adapter<StepsListAdapter.Step
     }
 
     @Override
-    public void onBindViewHolder(StepsViewHolder holder, int position) {
+    public void onBindViewHolder(StepsViewHolder holder, final int position) {
         holder.textView.setText(steps[position].htmlInstructions);
         String url = "http://maps.googleapis.com/maps/api/streetview?size=700x850&location=" + steps[position].endLocation.lat + "," + steps[position].endLocation.lng;
         Picasso.with(context).load(url)
                 .fit()
                 .into(holder.imageView);
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context, StreetViewActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("latlng", new LatLng(steps[position].endLocation.lat, steps[position].endLocation.lng));
+                i.putExtra("latlng", bundle);
+                context.startActivity(i);
+            }
+        });
     }
 
     @Override
