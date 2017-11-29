@@ -39,6 +39,7 @@ public class BusStopsActivity extends FragmentActivity implements OnMapReadyCall
             //Skip title
             reader.readNext();
             while ((line = reader.readNext()) != null) {
+
                 busStops.add(new BusStop(line[1], line[4], line[5], Double.parseDouble(line[7]), Double.parseDouble(line[6])));
             }
         }catch (Exception e) {
