@@ -32,7 +32,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng from;
     private LatLng to;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,11 +49,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-
-
-
-
-
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -68,8 +62,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(from));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(14), 2000, null);
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(to, 15.0f));
 
         mMap.addMarker(new MarkerOptions().position(from).title("From"));
         mMap.addMarker(new MarkerOptions().position(to).title("To"));

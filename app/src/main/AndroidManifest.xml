@@ -45,8 +45,6 @@
         <activity android:name=".BusStopsActivity" />
         <activity android:name=".StepsActivity" />
 
-        <service
-            android:name=".LiveService"/>
     </application>
 
 </manifest>

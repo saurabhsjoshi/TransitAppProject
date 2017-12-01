@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceLikelihoodBufferResponse;
 import com.google.android.gms.location.places.Places;
@@ -25,7 +24,7 @@ import permissions.dispatcher.RuntimePermissions;
 public class MainActivity extends AppCompatActivity {
     private Place from;
     private Place to;
-    private FusedLocationProviderClient fusedLocationProviderClient;
+
     private PlaceAutocompleteFragment autocompleteFragment;
 
 
@@ -76,16 +75,6 @@ public class MainActivity extends AppCompatActivity {
     @NeedsPermission(Manifest.permission.ACCESS_FINE_LOCATION)
     public void getCurrentLocation() {
         try{
-//            fusedLocationProviderClient.getLastLocation()
-//                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-//                        @Override
-//                        public void onSuccess(Location location) {
-//                            if(location != null){
-//
-//
-//                            }
-//                        }
-//                    });
             Task<PlaceLikelihoodBufferResponse> placeResult = Places.getPlaceDetectionClient(this, new PlacesOptions.Builder().build()).getCurrentPlace(null);
             placeResult.addOnCompleteListener(new OnCompleteListener<PlaceLikelihoodBufferResponse>() {
                 @Override
