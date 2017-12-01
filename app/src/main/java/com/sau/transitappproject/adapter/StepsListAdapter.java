@@ -17,17 +17,19 @@ import com.sau.transitappproject.R;
 import com.sau.transitappproject.StreetViewActivity;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 /**
  * Created by saurabh on 2017-11-26.
  */
 
 public class StepsListAdapter extends RecyclerView.Adapter<StepsListAdapter.StepsViewHolder> {
 
-    private DirectionsStep[] steps;
+    private ArrayList<DirectionsStep> steps;
     private Context context;
 
 
-    public StepsListAdapter(Context context, DirectionsStep[] steps) {
+    public StepsListAdapter(Context context, ArrayList<DirectionsStep> steps) {
         this.steps = steps;
         this.context =  context;
     }
@@ -35,12 +37,14 @@ public class StepsListAdapter extends RecyclerView.Adapter<StepsListAdapter.Step
     public static class StepsViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         TextView textView;
+        TextView txt_distance;
         ImageView imageView;
 
         StepsViewHolder(View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.cardView);
             textView = itemView.findViewById(R.id.description);
+            txt_distance = itemView.findViewById(R.id.distance);
             imageView = itemView.findViewById(R.id.img_sv);
         }
     }
@@ -53,8 +57,10 @@ public class StepsListAdapter extends RecyclerView.Adapter<StepsListAdapter.Step
 
     @Override
     public void onBindViewHolder(StepsViewHolder holder, final int position) {
-        holder.textView.setText(steps[position].htmlInstructions);
-        String url = "http://maps.googleapis.com/maps/api/streetview?size=700x850&location=" + steps[position].endLocation.lat + "," + steps[position].endLocation.lng;
+        final DirectionsStep step = steps.get(position);
+        holder.textView.setText(step.htmlInstructions);
+        holder.txt_distance.setText(step.distance.humanReadable  + " (" + step.duration.humanReadable + ")");
+        String url = "http://maps.googleapis.com/maps/api/streetview?size=700x850&location=" + step.endLocation.lat + "," + step.endLocation.lng;
         Picasso.with(context).load(url)
                 .fit()
                 .into(holder.imageView);
@@ -63,7 +69,7 @@ public class StepsListAdapter extends RecyclerView.Adapter<StepsListAdapter.Step
             public void onClick(View view) {
                 Intent i = new Intent(context, StreetViewActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("latlng", new LatLng(steps[position].endLocation.lat, steps[position].endLocation.lng));
+                bundle.putParcelable("latlng", new LatLng(step.endLocation.lat, step.endLocation.lng));
                 i.putExtra("latlng", bundle);
                 context.startActivity(i);
             }
@@ -77,6 +83,6 @@ public class StepsListAdapter extends RecyclerView.Adapter<StepsListAdapter.Step
 
     @Override
     public int getItemCount() {
-        return steps.length;
+        return steps.size();
     }
 }
